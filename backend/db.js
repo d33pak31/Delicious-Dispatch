@@ -4,19 +4,27 @@ const mongoURI =
   'mongodb+srv://deepakshiva:312000@cluster0.pb3djz1.mongodb.net/DeliciousDispatch?retryWrites=true&w=majority&appName=Cluster0'
 
 const mongoDB = async () => {
-  await mongoose.connect(mongoURI)
-  console.log(`the db is connect with ${mongoose.connection.host}`)
+  try {
+    await mongoose.connect(mongoURI)
+    console.log(`Connected to MongoDB at ${mongoose.connection.host}`)
 
-  const fetched_data = await mongoose.connection.db.collection('food_items')
-  const data = await fetched_data.find({}).toArray(function (err, data) {
-    if (err) {
-      console.log(err)
-    } else {
-      // console.log(data)
-      global.food_items = data
-    }
-  })
-  // console.log(global.food_items)
+    const fetched_data = await mongoose.connection.db
+      .collection('food_items')
+      .find({})
+      .toArray()
+
+    // Initialize foodCategory inside the scope of fetched_data
+    const foodCategory = await mongoose.connection.db
+      .collection('foodCategory')
+      .find({})
+      .toArray()
+
+    global.foodCategory = foodCategory // Assign foodCategory to global variable
+
+    global.food_items = fetched_data
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error)
+  }
 }
 
 module.exports = { mongoDB }

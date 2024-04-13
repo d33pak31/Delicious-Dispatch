@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-router.post('/foodData', async (req, res) => {
+router.get('/foodData', async (req, res) => {
   try {
-    // console.log(global.food_items)
-    res.json(global.food_items)
+    console.log(global.food_items)
+    res.json([global.food_items, global.foodCategory])
   } catch (err) {
     console.log(err)
     res.status(500).send('Server Error')
