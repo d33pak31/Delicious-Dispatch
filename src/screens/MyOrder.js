@@ -57,7 +57,6 @@ export const MyOrder = () => {
                                       maxHeight: '360px',
                                     }}
                                   >
-                                    console.log(arrayData.img);
                                     {/* <img
                                       src={arrayData.img}
                                       className="card-img-top"

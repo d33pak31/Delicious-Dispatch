@@ -8,22 +8,17 @@ export default function Cart() {
   if (data.length === 0) {
     return (
       <div>
-        <div className="m-5 w-100 text-center fs-3">The Cart is Empty!</div>
+        <div className="m-5 w-100 text-dark text-center fs-3">
+          The Cart is Empty!
+        </div>
       </div>
     )
   }
-
-  // const handleRemove = (index)=>{
-  //   console.log(index)
-  //   dispatch({type:"REMOVE",index:index})
-  // }
 
   const handleCheckOut = async () => {
     let userEmail = localStorage.getItem('userEmail')
     // console.log(data,localStorage.getItem("userEmail"),new Date())
     let response = await fetch('http://localhost:4000/api/orderData', {
-      // credentials: 'include',
-      // Origin:"http://localhost:3000/login",
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,7 +60,7 @@ export default function Cart() {
                 <td className="text-black">{food.size}</td>
                 <td className="text-black">{food.price}</td>
                 <td>
-                  <button type="button" className="btn p-0">
+                  <button type="button" className="btn p-0 bg-primary">
                     <Delete
                       onClick={() => {
                         dispatch({ type: 'REMOVE', index: index })
