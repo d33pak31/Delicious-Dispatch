@@ -23,7 +23,7 @@ export const Card = (props) => {
       }
     }
     if (food) {
-      console.log(food, 'fodododododoodododoododoodo')
+      // console.log(food, 'fodododododoodododoododoodo')
       if (food.size === size) {
         await dispatch({
           type: 'UPDATE',

@@ -31,6 +31,7 @@ export const Login = () => {
         alert('Enter valid details')
         return
       } else {
+        localStorage.setItem('userEmail', credentials.email)
         localStorage.setItem('authToken', json.authToken)
         navigate('/')
       }

@@ -32,6 +32,8 @@ const reducer = (state, action) => {
         }
         return food
       })
+    case 'DROP':
+      return []
 
     default:
       console.log('Error in reducer')
